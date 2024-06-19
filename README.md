@@ -8,16 +8,11 @@
 
 Пример использования
 
-    func main() {
-    	cache := cache.New()
-    
-    	cache.Set("userId", 42)
-    	userId, _ := cache.Get("userId")
-    
-    	fmt.Println(userId)
-    
-    	cache.Delete("userId")
-    	userId, _ = cache.Get("userId")
-    
-    	fmt.Println(userId)
-    }
+    // Создаем контейнер с временем жизни по-умолчанию равным 5 минут и удалением просроченного кеша каждые 10 минут
+    cache := memorycache.New(5 * time.Minute, 10 * time.Minute)
+
+    // Установить кеш с ключем "myKey" и временем жизни 5 минут
+    cache.Set("myKey", "My value", 5 * time.Minute)
+
+    // Получить кеш с ключом "myKey"
+    i := cache.Get("myKey")
